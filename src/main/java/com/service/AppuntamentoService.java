@@ -12,6 +12,8 @@ public interface AppuntamentoService {
 
 	public Appuntamento save(Appuntamento appuntamento);
 
+	public Appuntamento post(Appuntamento appuntamento);
+
 	public void delete(Integer id);
 
 }

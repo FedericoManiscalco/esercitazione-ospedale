@@ -6,29 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
-import com.entity.Appuntamento;
-import com.repository.AppuntamentoRepository;
+import com.entity.Prestazione;
+import com.repository.PrestazioneRepository;
 
 @Service
-public class AppuntamentoServiceImpl implements AppuntamentoService {
+public class PrestazioneServiceImpl implements PrestazioneService {
 
 	@Autowired
-	private AppuntamentoRepository ar;
+	private PrestazioneRepository pr;
 
 	@Override
-	public List<Appuntamento> findAll() {
-		return ar.findAll();
+	public List<Prestazione> findAll() {
+		return pr.findAll();
 	}
 
 	@Override
-	public List<Appuntamento> findByData(String data) {
-		return ar.findByData(data);
-	}
-
-	@Override
-	public Appuntamento save(Appuntamento appuntamento) {
+	public Prestazione postPrestazione(Prestazione prestazione) {
 		try {
-			ar.save(appuntamento);
+			return pr.save(prestazione);
 		} catch (IllegalArgumentException | OptimisticLockingFailureException e) {
 			e.printStackTrace();
 		}
@@ -36,9 +31,9 @@ public class AppuntamentoServiceImpl implements AppuntamentoService {
 	}
 
 	@Override
-	public Appuntamento post(Appuntamento appuntamento) {
+	public Prestazione patchPrestazione(Prestazione prestazione) {
 		try {
-			ar.save(appuntamento);
+			return pr.save(prestazione);
 		} catch (IllegalArgumentException | OptimisticLockingFailureException e) {
 			e.printStackTrace();
 		}
@@ -48,10 +43,11 @@ public class AppuntamentoServiceImpl implements AppuntamentoService {
 	@Override
 	public void delete(Integer id) {
 		try {
-			ar.deleteById(id);
+			pr.deleteById(id);
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 }

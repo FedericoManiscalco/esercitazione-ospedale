@@ -3,6 +3,7 @@ package com.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import com.entity.Paziente;
@@ -21,12 +22,31 @@ public class PazienteServiceImpl implements PazienteService {
 
 	@Override
 	public Paziente upsert(Paziente paziente) {
-		return pr.save(paziente);
+		try {
+			return pr.save(paziente);
+		} catch (IllegalArgumentException | OptimisticLockingFailureException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public void delete(Integer id) {
-		pr.deleteById(id);
+		try {
+			pr.deleteById(id);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public Paziente patchPaziente(Paziente paziente) {
+		try {
+			return pr.save(paziente);
+		} catch (IllegalArgumentException | OptimisticLockingFailureException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

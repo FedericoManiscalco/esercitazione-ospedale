@@ -35,15 +35,21 @@ public class Appuntamento {
 	@Column(nullable = false)
 	private String ricetta;
 
+	private Boolean completato;
+
 	@ManyToOne
 	@JoinColumn(name = "paziente_id", nullable = false)
 	private Paziente paziente;
 
 	@ManyToOne
+	@JoinColumn(name = "prestazione_id", nullable = false)
+	private Prestazione prestazione;
+
+	@ManyToOne
 	@JoinColumn(name = "medico_id", nullable = false)
 	private Medico medico;
 
-	@OneToOne(mappedBy = "Appuntamento")
+	@OneToOne(mappedBy = "appuntamento")
 	private Richiesta richiesta;
 
 }

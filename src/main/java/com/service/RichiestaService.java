@@ -8,8 +8,12 @@ public interface RichiestaService {
 
 	public List<Richiesta> findAll();
 
-	public Richiesta save();
+	public Richiesta post(Richiesta richiesta);
+
+	public Richiesta update(Richiesta richiesta);
 
 	public void delete(Integer id);
+
+	public Richiesta patchRichiesta(Richiesta richiesta);
 
 }

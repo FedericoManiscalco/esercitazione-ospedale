@@ -38,7 +38,7 @@ public class Paziente {
 
 	private String email;
 
-	@OneToMany(mappedBy = "course")
+	@OneToMany(mappedBy = "paziente")
 	private List<Appuntamento> appuntamenti = new ArrayList<>();
 
 	@Override

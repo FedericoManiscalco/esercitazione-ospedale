@@ -12,4 +12,6 @@ public interface PazienteService {
 
 	public void delete(Integer id);
 
+	public Paziente patchPaziente(Paziente paziente);
+
 }

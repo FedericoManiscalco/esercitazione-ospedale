@@ -12,4 +12,6 @@ public interface MedicoService {
 
 	public void delete(Integer id);
 
+	public Medico patch(Medico medico);
+
 }
