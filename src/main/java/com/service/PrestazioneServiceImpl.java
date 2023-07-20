@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
+import com.dto.PrestazioneDTO;
 import com.entity.Prestazione;
+import com.repository.MedicoRepository;
 import com.repository.PrestazioneRepository;
 
 @Service
@@ -15,14 +17,19 @@ public class PrestazioneServiceImpl implements PrestazioneService {
 	@Autowired
 	private PrestazioneRepository pr;
 
+	@Autowired
+	private MedicoRepository mr;
+
 	@Override
 	public List<Prestazione> findAll() {
 		return pr.findAll();
 	}
 
 	@Override
-	public Prestazione postPrestazione(Prestazione prestazione) {
+	public Prestazione postPrestazione(PrestazioneDTO prestazioneDTO) {
 		try {
+			Prestazione prestazione = mapToEntity(prestazioneDTO);
+			prestazione.setMedico(mr.findById(prestazioneDTO.getMedicoId()).get());
 			return pr.save(prestazione);
 		} catch (IllegalArgumentException | OptimisticLockingFailureException e) {
 			e.printStackTrace();
@@ -50,4 +57,9 @@ public class PrestazioneServiceImpl implements PrestazioneService {
 
 	}
 
+	private Prestazione mapToEntity(PrestazioneDTO prestazioneDTO) {
+		Prestazione prestazione = new Prestazione();
+		prestazione.setTipologia(prestazioneDTO.getTipologia());
+		return prestazione;
+	}
 }

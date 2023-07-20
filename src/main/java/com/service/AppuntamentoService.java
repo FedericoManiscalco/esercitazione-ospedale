@@ -10,7 +10,7 @@ public interface AppuntamentoService {
 
 	public List<Appuntamento> findByData(String data);
 
-	public Appuntamento save(Appuntamento appuntamento);
+	public Appuntamento patch(Appuntamento appuntamento);
 
 	public Appuntamento post(Appuntamento appuntamento);
 

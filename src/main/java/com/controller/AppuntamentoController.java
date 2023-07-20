@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,17 +36,12 @@ public class AppuntamentoController {
 
 	@PostMapping("/postAppuntamento")
 	public Appuntamento postAppuntamento(@RequestBody Appuntamento appuntamento) {
-		return as.save(appuntamento);
-	}
-
-	@PutMapping("/updateAppuntamento")
-	public Appuntamento updateAppuntamento(@RequestBody Appuntamento appuntamento) {
-		return as.save(appuntamento);
+		return as.post(appuntamento);
 	}
 
 	@PatchMapping("/patchAppuntamento")
 	public Appuntamento patchAppuntamento(@RequestBody Appuntamento appuntamento) {
-		return as.save(appuntamento);
+		return as.patch(appuntamento);
 	}
 
 	@DeleteMapping("/deleteAppuntamento{id}")

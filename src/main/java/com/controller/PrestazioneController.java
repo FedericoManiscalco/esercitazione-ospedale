@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dto.PrestazioneDTO;
 import com.entity.Prestazione;
 import com.service.PrestazioneService;
 
@@ -30,8 +31,8 @@ public class PrestazioneController {
 	}
 
 	@PostMapping("/postPrestazione")
-	public Prestazione postPrestazione(@RequestBody Prestazione prestazione) {
-		return ps.postPrestazione(prestazione);
+	public Prestazione postPrestazione(@RequestBody PrestazioneDTO prestazioneDTO) {
+		return ps.postPrestazione(prestazioneDTO);
 	}
 
 	@PatchMapping("/patchPrestazione")

@@ -26,7 +26,7 @@ public class AppuntamentoServiceImpl implements AppuntamentoService {
 	}
 
 	@Override
-	public Appuntamento save(Appuntamento appuntamento) {
+	public Appuntamento patch(Appuntamento appuntamento) {
 		try {
 			ar.save(appuntamento);
 		} catch (IllegalArgumentException | OptimisticLockingFailureException e) {
@@ -38,6 +38,7 @@ public class AppuntamentoServiceImpl implements AppuntamentoService {
 	@Override
 	public Appuntamento post(Appuntamento appuntamento) {
 		try {
+
 			ar.save(appuntamento);
 		} catch (IllegalArgumentException | OptimisticLockingFailureException e) {
 			e.printStackTrace();
