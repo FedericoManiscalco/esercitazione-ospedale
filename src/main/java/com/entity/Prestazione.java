@@ -15,11 +15,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 
@@ -39,5 +37,10 @@ public class Prestazione {
 
 	@OneToMany(mappedBy = "prestazione")
 	private List<Appuntamento> appuntamenti = new ArrayList<>();
+
+	@Override
+	public String toString() {
+		return "Prestazione [prestazioneId=" + prestazioneId + ", tipologia=" + tipologia + ", medico=" + medico + "]";
+	}
 
 }

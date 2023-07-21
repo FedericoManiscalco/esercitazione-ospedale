@@ -45,10 +45,6 @@ public class Appuntamento {
 	@JoinColumn(name = "prestazione_id", nullable = false)
 	private Prestazione prestazione;
 
-	@ManyToOne
-	@JoinColumn(name = "medico_id", nullable = false)
-	private Medico medico;
-
 	@OneToOne(mappedBy = "appuntamento")
 	private Richiesta richiesta;
 

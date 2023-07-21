@@ -3,6 +3,8 @@ package com.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,11 +39,9 @@ public class Medico {
 
 	private Boolean active;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "medico")
 	private List<Prestazione> prestazione = new ArrayList<>();
-
-	@OneToMany(mappedBy = "medico")
-	private List<Appuntamento> appuntamenti = new ArrayList<>();
 
 	@Override
 	public String toString() {
