@@ -30,8 +30,8 @@ public class PazienteController {
 		return ps.findAll();
 	}
 
-	@GetMapping("/getPazienti/{id}")
-	public Paziente findById(Integer id) {
+	@GetMapping("/getPazienteById/{id}")
+	public Paziente findById(@PathVariable Integer id) {
 		return ps.findById(id);
 	}
 
