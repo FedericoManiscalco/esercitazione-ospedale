@@ -15,6 +15,9 @@ public class RichiestaServiceImpl implements RichiestaService {
 	@Autowired
 	private RichiestaRepository rr;
 
+	@Autowired
+	private EmailServiceImpl es;
+
 	@Override
 	public List<Richiesta> findAll() {
 		return rr.findAll();
@@ -55,6 +58,22 @@ public class RichiestaServiceImpl implements RichiestaService {
 	@Override
 	public Richiesta patchRichiesta(Richiesta richiesta) {
 		try {
+			if (richiesta.getStatus()) {
+				richiesta.getAppuntamento().setOrario(richiesta.getNuovoOrario());
+				richiesta.getAppuntamento().setData(richiesta.getNuovaData());
+				String pazienteEmail = richiesta.getAppuntamento().getPaziente().getEmail();
+				String dottoreEmail = richiesta.getAppuntamento().getPrestazione().getMedico().getEmail();
+				es.sendPositiveEmail(pazienteEmail);
+				es.sendPositiveEmail(dottoreEmail);
+
+			} else {
+				String pazienteEmail = richiesta.getAppuntamento().getPaziente().getEmail();
+				String dottoreEmail = richiesta.getAppuntamento().getPrestazione().getMedico().getEmail();
+				es.sendPositiveEmail(dottoreEmail);
+				es.sendNegaviteEmail(pazienteEmail);
+
+			}
+
 			return rr.save(richiesta);
 		} catch (IllegalArgumentException | OptimisticLockingFailureException e) {
 			// TODO Auto-generated catch block

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.entity.Richiesta;
+import com.service.EmailServiceImpl;
 import com.service.RichiestaService;
 
 @CrossOrigin
@@ -24,6 +25,9 @@ public class RichiestaController {
 
 	@Autowired
 	private RichiestaService rs;
+
+	@Autowired
+	private EmailServiceImpl es;
 
 	@GetMapping("/getRichieste")
 	public List<Richiesta> getAll() {

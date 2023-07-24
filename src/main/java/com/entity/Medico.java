@@ -11,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,6 +37,8 @@ public class Medico {
 	@Column(name = "last_name")
 	private String lastName;
 
+	@NotEmpty(message = "Email cannot be empty")
+	@Email(message = "Invalid email format")
 	private String email;
 
 	private Boolean active;

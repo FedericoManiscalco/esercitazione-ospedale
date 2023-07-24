@@ -34,9 +34,7 @@ public class PrestazioneController {
 
 	@PostMapping("/postPrestazione")
 	public ResponseEntity<Prestazione> postPrestazione(@RequestBody PrestazioneDTO prestazioneDTO) {
-
 		Prestazione p = ps.postPrestazione(prestazioneDTO);
-		System.out.println(p);
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
 

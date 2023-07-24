@@ -31,6 +31,8 @@ public class Richiesta {
 	@Column(name = "nuovo_orario")
 	private String nuovoOrario;
 
+	private Boolean status;
+
 	@OneToOne
 	@JoinColumn(name = "appuntamento_id", referencedColumnName = "appuntamento_id")
 	private Appuntamento appuntamento;
