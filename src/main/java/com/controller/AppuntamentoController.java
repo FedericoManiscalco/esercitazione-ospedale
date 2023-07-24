@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dto.AppuntamentoDTO;
 import com.entity.Appuntamento;
+import com.entity.Medico;
+import com.entity.Paziente;
 import com.service.AppuntamentoService;
 
 @CrossOrigin
@@ -33,6 +35,16 @@ public class AppuntamentoController {
 	@GetMapping("/getAppuntamentoByData/{data}")
 	public List<Appuntamento> getAppuntamentoByData(@PathVariable String data) {
 		return as.findByData(data);
+	}
+
+	@GetMapping("/getAppuntamentoByPazienteId")
+	public List<Appuntamento> getAppuntamentoByPazienteId(@RequestBody Paziente paziente) {
+		return as.findByPaziente(paziente);
+	}
+
+	@GetMapping("/getAppuntamentoByMedicoId")
+	public List<Appuntamento> getAppuntamentoByPazienteId(@RequestBody Medico medico) {
+		return as.findByMedico(medico);
 	}
 
 	@PostMapping("/postAppuntamento")

@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.dto.AppuntamentoDTO;
 import com.entity.Appuntamento;
+import com.entity.Medico;
+import com.entity.Paziente;
 import com.repository.AppuntamentoRepository;
+import com.repository.MedicoRepository;
 import com.repository.PazienteRepository;
 import com.repository.PrestazioneRepository;
-import com.repository.RichiestaRepository;
 
 @Service
 public class AppuntamentoServiceImpl implements AppuntamentoService {
@@ -25,7 +27,8 @@ public class AppuntamentoServiceImpl implements AppuntamentoService {
 	@Autowired
 	private PrestazioneRepository prr;
 
-	private RichiestaRepository rr;
+	@Autowired
+	private MedicoRepository mr;
 
 	@Override
 	public List<Appuntamento> findAll() {
@@ -35,6 +38,18 @@ public class AppuntamentoServiceImpl implements AppuntamentoService {
 	@Override
 	public List<Appuntamento> findByData(String data) {
 		return ar.findByData(data);
+	}
+
+	@Override
+	public List<Appuntamento> findByPaziente(Paziente paziente) {
+		paziente = pr.findById(paziente.getPazienteId()).get();
+		return ar.findByPaziente(paziente);
+	}
+
+	@Override
+	public List<Appuntamento> findByMedico(Medico medico) {
+		medico = mr.findById(medico.getMedicoId()).get();
+		return ar.findByMedico(medico);
 	}
 
 	@Override
