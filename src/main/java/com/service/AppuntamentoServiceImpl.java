@@ -6,14 +6,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
+import com.dto.AppuntamentoDTO;
 import com.entity.Appuntamento;
 import com.repository.AppuntamentoRepository;
+import com.repository.PazienteRepository;
+import com.repository.PrestazioneRepository;
+import com.repository.RichiestaRepository;
 
 @Service
 public class AppuntamentoServiceImpl implements AppuntamentoService {
 
 	@Autowired
 	private AppuntamentoRepository ar;
+
+	@Autowired
+	private PazienteRepository pr;
+
+	@Autowired
+	private PrestazioneRepository prr;
+
+	private RichiestaRepository rr;
 
 	@Override
 	public List<Appuntamento> findAll() {
@@ -36,11 +48,11 @@ public class AppuntamentoServiceImpl implements AppuntamentoService {
 	}
 
 	@Override
-	public Appuntamento post(Appuntamento appuntamento) {
+	public Appuntamento post(AppuntamentoDTO appuntamentoDTO) {
 		try {
-
-			ar.save(appuntamento);
-		} catch (IllegalArgumentException | OptimisticLockingFailureException e) {
+			Appuntamento a = toEntity(appuntamentoDTO);
+			return ar.save(a);
+		} catch (OptimisticLockingFailureException | IllegalArgumentException e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -53,6 +65,17 @@ public class AppuntamentoServiceImpl implements AppuntamentoService {
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private Appuntamento toEntity(AppuntamentoDTO appuntamentoDTO) {
+		Appuntamento a = new Appuntamento();
+		a.setData(appuntamentoDTO.getData());
+		a.setRicetta(appuntamentoDTO.getRicetta());
+		a.setCompletato(appuntamentoDTO.getCompletato());
+		a.setOrario(appuntamentoDTO.getOrario());
+		a.setPrestazione(prr.findById(appuntamentoDTO.getPrestazioneId()).get());
+		a.setPaziente(pr.findById(appuntamentoDTO.getPazienteId()).get());
+		return a;
 	}
 
 }

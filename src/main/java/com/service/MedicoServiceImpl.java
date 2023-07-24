@@ -22,6 +22,11 @@ public class MedicoServiceImpl implements MedicoService {
 	}
 
 	@Override
+	public Medico findById(Integer id) {
+		return mr.findById(id).get();
+	}
+
+	@Override
 	public Medico save(Medico medico) {
 		return mr.save(medico);
 	}

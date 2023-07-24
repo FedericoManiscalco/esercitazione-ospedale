@@ -14,7 +14,6 @@ public class EmailServiceImpl {
 	SimpleMailMessage message = new SimpleMailMessage();
 
 	public void sendPositiveEmail(String to) {
-
 		message.setFrom("fullstacktest@gmx.com");
 		message.setTo(to);
 		message.setSubject("Richiesta cambio orario/data");

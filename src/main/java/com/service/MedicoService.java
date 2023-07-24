@@ -8,6 +8,8 @@ public interface MedicoService {
 
 	public List<Medico> findAll();
 
+	public Medico findById(Integer id);
+
 	public Medico save(Medico medico);
 
 	public void delete(Integer id);

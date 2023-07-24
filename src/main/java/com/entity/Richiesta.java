@@ -34,7 +34,7 @@ public class Richiesta {
 	private Boolean status;
 
 	@OneToOne
-	@JoinColumn(name = "appuntamento_id", referencedColumnName = "appuntamento_id")
+	@JoinColumn(name = "appuntamento_id", nullable = false)
 	private Appuntamento appuntamento;
 
 }

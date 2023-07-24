@@ -2,13 +2,14 @@ package com.service;
 
 import java.util.List;
 
+import com.dto.RichiestaDTO;
 import com.entity.Richiesta;
 
 public interface RichiestaService {
 
 	public List<Richiesta> findAll();
 
-	public Richiesta post(Richiesta richiesta);
+	public Richiesta post(RichiestaDTO richiestaDTO);
 
 	public Richiesta update(Richiesta richiesta);
 

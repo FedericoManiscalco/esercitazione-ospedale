@@ -30,6 +30,11 @@ public class MedicoController {
 		return ms.findAll();
 	}
 
+	@GetMapping("/getMedico/{id}")
+	public Medico findById(@PathVariable Integer id) {
+		return ms.findById(id);
+	}
+
 	@PostMapping("/postMedico")
 	public Medico post(@RequestBody Medico medico) {
 		return ms.save(medico);

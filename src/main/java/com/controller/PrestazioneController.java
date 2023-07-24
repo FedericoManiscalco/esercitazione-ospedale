@@ -3,8 +3,6 @@ package com.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,9 +31,9 @@ public class PrestazioneController {
 	}
 
 	@PostMapping("/postPrestazione")
-	public ResponseEntity<Prestazione> postPrestazione(@RequestBody PrestazioneDTO prestazioneDTO) {
-		Prestazione p = ps.postPrestazione(prestazioneDTO);
-		return new ResponseEntity<>(p, HttpStatus.OK);
+	public Prestazione postPrestazione(@RequestBody PrestazioneDTO prestazione) {
+		return ps.postPrestazione(prestazione);
+
 	}
 
 	@PatchMapping("/patchPrestazione")

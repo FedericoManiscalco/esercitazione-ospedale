@@ -21,6 +21,11 @@ public class PazienteServiceImpl implements PazienteService {
 	}
 
 	@Override
+	public Paziente findById(Integer Id) {
+		return pr.findById(Id).get();
+	}
+
+	@Override
 	public Paziente upsert(Paziente paziente) {
 		try {
 			return pr.save(paziente);

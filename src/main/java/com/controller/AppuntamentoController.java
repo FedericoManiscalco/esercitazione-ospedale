@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dto.AppuntamentoDTO;
 import com.entity.Appuntamento;
 import com.service.AppuntamentoService;
 
@@ -35,7 +36,8 @@ public class AppuntamentoController {
 	}
 
 	@PostMapping("/postAppuntamento")
-	public Appuntamento postAppuntamento(@RequestBody Appuntamento appuntamento) {
+	public Appuntamento postAppuntamento(@RequestBody AppuntamentoDTO appuntamento) {
+		System.out.println(appuntamento);
 		return as.post(appuntamento);
 	}
 

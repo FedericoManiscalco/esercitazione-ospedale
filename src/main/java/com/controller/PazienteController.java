@@ -30,6 +30,11 @@ public class PazienteController {
 		return ps.findAll();
 	}
 
+	@GetMapping("/getPazienti/{id}")
+	public Paziente findById(Integer id) {
+		return ps.findById(id);
+	}
+
 	@PostMapping("/postPaziente")
 	public Paziente postPaziente(@RequestBody Paziente paziente) {
 		return ps.upsert(paziente);

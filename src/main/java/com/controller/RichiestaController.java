@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dto.RichiestaDTO;
 import com.entity.Richiesta;
-import com.service.EmailServiceImpl;
 import com.service.RichiestaService;
 
 @CrossOrigin
@@ -26,16 +26,13 @@ public class RichiestaController {
 	@Autowired
 	private RichiestaService rs;
 
-	@Autowired
-	private EmailServiceImpl es;
-
 	@GetMapping("/getRichieste")
 	public List<Richiesta> getAll() {
 		return rs.findAll();
 	}
 
 	@PostMapping("/postRichiesta")
-	public Richiesta postRichiesta(@RequestBody Richiesta richiesta) {
+	public Richiesta postRichiesta(@RequestBody RichiestaDTO richiesta) {
 		return rs.post(richiesta);
 	}
 

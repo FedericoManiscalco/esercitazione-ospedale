@@ -1,5 +1,7 @@
 package com.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -45,6 +47,7 @@ public class Appuntamento {
 	@JoinColumn(name = "prestazione_id", nullable = false)
 	private Prestazione prestazione;
 
+	@JsonIgnore
 	@OneToOne(mappedBy = "appuntamento")
 	private Richiesta richiesta;
 
