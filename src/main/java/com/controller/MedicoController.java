@@ -3,6 +3,7 @@ package com.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,11 @@ public class MedicoController {
 	@GetMapping("/getMedico")
 	public List<Medico> findAll() {
 		return ms.findAll();
+	}
+
+	@GetMapping("/getMedicoByEmail/{email}")
+	public ResponseEntity<Medico> findMedicoByEmail(@PathVariable String email) {
+		return ms.findByEmail(email);
 	}
 
 	@GetMapping("/getMedico/{id}")
