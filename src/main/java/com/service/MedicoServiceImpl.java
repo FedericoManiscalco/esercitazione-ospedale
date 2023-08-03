@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -45,13 +46,21 @@ public class MedicoServiceImpl implements MedicoService {
 
 	@Override
 	public Medico save(Medico medico) {
-		return mr.save(medico);
+		try {
+			return mr.save(medico);
+		} catch (IllegalArgumentException | OptimisticLockingFailureException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public void delete(Integer id) {
-		mr.deleteById(id);
-
+		try {
+			mr.deleteById(id);
+		} catch (IllegalArgumentException iae) {
+			iae.printStackTrace();
+		}
 	}
 
 	@Override

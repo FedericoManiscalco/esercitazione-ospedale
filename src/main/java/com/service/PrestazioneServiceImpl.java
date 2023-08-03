@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import com.dto.PrestazioneDTO;
@@ -32,7 +33,7 @@ public class PrestazioneServiceImpl implements PrestazioneService {
 			prestazione.setMedico(mr.findById(prestazioneDTO.getMedicoId()).get());
 			return pr.save(prestazione);
 		} catch (NoSuchElementException e) {
-
+			e.printStackTrace();
 		}
 		return null;
 
@@ -40,12 +41,21 @@ public class PrestazioneServiceImpl implements PrestazioneService {
 
 	@Override
 	public Prestazione patchPrestazione(Prestazione prestazione) {
-		return pr.save(prestazione);
+		try {
+			return pr.save(prestazione);
+		} catch (IllegalArgumentException | OptimisticLockingFailureException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public void delete(Integer id) {
-		pr.deleteById(id);
+		try {
+			pr.deleteById(id);
+		} catch (IllegalArgumentException iae) {
+			iae.printStackTrace();
+		}
 
 	}
 

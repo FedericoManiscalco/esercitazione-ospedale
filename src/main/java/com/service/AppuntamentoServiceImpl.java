@@ -42,13 +42,21 @@ public class AppuntamentoServiceImpl implements AppuntamentoService {
 
 	@Override
 	public List<Appuntamento> findByPaziente(Paziente paziente) {
-		paziente = pr.findById(paziente.getPazienteId()).get();
+		try {
+			paziente = pr.findById(paziente.getPazienteId()).get();
+		} catch (IllegalArgumentException iae) {
+			iae.printStackTrace();
+		}
 		return ar.findByPaziente(paziente);
 	}
 
 	@Override
 	public List<Appuntamento> findByMedico(Medico medico) {
-		medico = mr.findById(medico.getMedicoId()).get();
+		try {
+			medico = mr.findById(medico.getMedicoId()).get();
+		} catch (IllegalArgumentException iae) {
+			iae.printStackTrace();
+		}
 		return ar.findByMedico(medico);
 	}
 

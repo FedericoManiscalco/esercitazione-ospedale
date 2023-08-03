@@ -66,6 +66,7 @@ public class RichiestaServiceImpl implements RichiestaService {
 			if (richiesta.getStatus()) {
 				richiesta.getAppuntamento().setOrario(richiesta.getNuovoOrario());
 				richiesta.getAppuntamento().setData(richiesta.getNuovaData());
+
 				String pazienteEmail = richiesta.getAppuntamento().getPaziente().getEmail();
 				String dottoreEmail = richiesta.getAppuntamento().getPrestazione().getMedico().getEmail();
 				es.sendPositiveEmail(pazienteEmail);

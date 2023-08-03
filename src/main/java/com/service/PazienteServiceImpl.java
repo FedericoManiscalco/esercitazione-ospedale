@@ -24,17 +24,15 @@ public class PazienteServiceImpl implements PazienteService {
 
 	public ResponseEntity<Paziente> findByEmail(String email) {
 		try {
-			Paziente p = pr.findByEmail(email); // Chiamata al metodo del repository per trovare il paziente
+			Paziente p = pr.findByEmail(email);
 			if (p != null) {
-				return new ResponseEntity<>(p, HttpStatus.OK); // Restituisci il paziente trovato con stato 200 OK
+				return new ResponseEntity<>(p, HttpStatus.OK);
 			} else {
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Restituisci 404 Not Found se il paziente non viene
-																	// trovato
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // Restituisci 500 Internal Server Error in
-																			// caso di eccezione
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
